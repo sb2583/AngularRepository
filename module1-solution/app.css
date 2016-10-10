@@ -1,0 +1,13 @@
+.message.red {
+  color: red;
+}
+.message.green {
+  color: green;
+}
+
+input.green{
+  border: 1px solid green;
+}
+input.red{
+  border: 1px solid red;
+}
