@@ -38,10 +38,6 @@ function ToBuyController(ShoppingListCheckOffService) {
 
   showList.removeItem = function (itemIndex) {
       ShoppingListCheckOffService.removeItem(itemIndex);
-      if(showList.items.length  === 0) {
-        showList.message = "Everything is bought!";
-      }
-
   };
 
   showList.addItem = function (itemIndex) {
@@ -54,7 +50,6 @@ function AlreadyBoughtController(ShoppingListCheckOffService) {
   var itemAdder = this;
 
 itemAdder.itemsBought = ShoppingListCheckOffService.getItemBought();
-itemAdder.message = ShoppingListCheckOffService.getMessage();
 }
 
 
@@ -65,11 +60,6 @@ function ShoppingListCheckOffService() {
   var items = shoppingList;
   var itemsBought = [];
 
-  this.boughtMessage = {
-      value: 'Nothing bought yet.'
-    }
-
-
   service.removeItem = function (itemIdex) {
     items.splice(itemIdex, 1);
   };
@@ -79,15 +69,11 @@ function ShoppingListCheckOffService() {
 
   // bought items
   service.addItem = function (itemIndex) {
-    this.boughtMessage.value = "";
     var item = items[itemIndex];
     itemsBought.push(item);
   };
   service.getItemBought = function () {
     return itemsBought;
-  };
-  service.getMessage = function () {
-    return this.boughtMessage;
   };
 
 }

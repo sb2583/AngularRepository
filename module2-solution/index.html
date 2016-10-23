@@ -39,8 +39,8 @@
          <button ng-click="showList.addItem($index);showList.removeItem($index);">Remove Item</button>
        </li>
      </ol>
-     <div ng-if="showList.message" class="emptyMessage">
-          {{showList.message}}
+     <div ng-show="!showList.items.length" class="emptyMessage">
+          Everything is bought!
      </div>
     </div>
 
@@ -49,11 +49,11 @@
      <h2>Already Bought:</h2>
      <ul>
        <li ng-repeat="item in itemAdder.itemsBought">
-         {{ item.quantity }} of {{ item.name }}
+         Bought {{ item.quantity }} of {{ item.name }}
       </li>
      </ul>
-     <div ng-if="itemAdder.message.value" class="emptyMessage">
-       {{itemAdder.message.value}}
+     <div ng-show="!itemAdder.itemsBought.length" class="emptyMessage">
+       Nothing bought yet.
      </div>
     </div>
   </div>
