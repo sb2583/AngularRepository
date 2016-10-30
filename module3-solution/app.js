@@ -34,11 +34,12 @@ function NarrowItDownController(MenuSearchService) {
   list.errorMessage = "";
   list.getMenuItems = function () {
     var searchTerm = list.searchTerm;
-
+    alert(list.searchTerm);
     var promise = MenuSearchService.getMatchedMenuItems(searchTerm);
 
     promise.then(function (response) {
        list.items = response;
+
     })
     .catch(function (error) {
        console.log(error);
@@ -62,11 +63,13 @@ function MenuSearchService($http, ApiBasePath) {
       url: (ApiBasePath + "/menu_items.json")
     }).then(function (result) {
        foundItems = [];
-        for(var i=0; i<result.data.menu_items.length; i++){
-          if(result.data.menu_items[i].description.includes(searchTerm)) {
-            foundItems.push(result.data.menu_items[i]);
+       if(searchTerm.length > 0) {
+          for(var i=0; i<result.data.menu_items.length; i++){
+            if(result.data.menu_items[i].description.includes(searchTerm)) {
+              foundItems.push(result.data.menu_items[i]);
+            }
           }
-        }
+       }
       return foundItems;
     });
 
