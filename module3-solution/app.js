@@ -34,7 +34,7 @@ function NarrowItDownController(MenuSearchService) {
   list.errorMessage = "";
   list.getMenuItems = function () {
     var searchTerm = list.searchTerm;
-    alert(list.searchTerm);
+
     var promise = MenuSearchService.getMatchedMenuItems(searchTerm);
 
     promise.then(function (response) {
@@ -63,7 +63,7 @@ function MenuSearchService($http, ApiBasePath) {
       url: (ApiBasePath + "/menu_items.json")
     }).then(function (result) {
        foundItems = [];
-       if(searchTerm.length > 0) {
+       if(searchTerm !== '') {
           for(var i=0; i<result.data.menu_items.length; i++){
             if(result.data.menu_items[i].description.includes(searchTerm)) {
               foundItems.push(result.data.menu_items[i]);
